@@ -7,6 +7,7 @@ spring:
     enabled: true
     encoding: UTF-8
     excluded-view-names: ''
-    mode: HTML5
+    mode: HTML
     prefix: classpath:/templates/
-    view-names: ''
+    suffix: .html
+    #view-names: ''
