@@ -1,5 +1,8 @@
 package com.domain.projectname.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +21,7 @@ public class ExampleController {
 	@GetMapping("exampleString")
 	//localhost:8080/example/exampleString
 	public String exampleString(Model model) {
-		model.addAttribute("person", new Person("jon", 32));
+		model.addAttribute("people", getPeople());
 		return EXAMPLE_VIEW; // retorna el nombre de la vista ubicada en templates
 	}
 	
@@ -27,8 +30,19 @@ public class ExampleController {
 	//localhost:8080/example/exampleMAV
 	public ModelAndView exampleMAV() {
 		ModelAndView mav = new ModelAndView(EXAMPLE_VIEW);
-		mav.addObject("person", new Person("Smith", 33));
+		mav.addObject("people", getPeople());
 		return mav;
+	}
+	
+	private List<Person> getPeople(){
+		List<Person> people = new ArrayList<>();
+		people.add(new Person("Juan", 30));
+		people.add(new Person("Jose", 29));
+		people.add(new Person("Flor", 24));
+		people.add(new Person("Lucero", 28));
+		people.add(new Person("Yessi", 27));
+		people.add(new Person("Jonh", 32));
+		return people;
 	}
 
 }
