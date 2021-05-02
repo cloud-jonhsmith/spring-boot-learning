@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Form</title>
+	</head>
+	<body>
+		<!-- "th:action" aquí se debe escribir una url o una redirección, se debe colocar "@" -->
+		<!-- en "th:object" se ingresa un objecto enviado desde el controlador -->
+		<form action="#" th:action="@{/example3/addperson}" th:object="${person}" method="post">
+		<!-- para asignar un valor se usa "*" por ejemplo: th:field="*{valor}" -->
+			<p>NAME: <input type="text" th:field="*{name}"/></p>
+			<p>AGE: <input type="number" th:field="*{age}"/></p>
+			<p><input type="submit" value="Submit"/></p>
+		</form>
+	</body>
+</html>
