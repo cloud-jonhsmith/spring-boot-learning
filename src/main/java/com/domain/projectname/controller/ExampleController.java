@@ -10,18 +10,20 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("example") //localhost:8080/example
 public class ExampleController {
 	
+	public static final String EXAMPLE_VIEW = "example";
+	
 	//Primera forma
 	@GetMapping("exampleString")
 	//localhost:8080/example/exampleString
 	public String exampleString() {
-		return "example"; // retorna el nombre de la vista ubicada en templates
+		return EXAMPLE_VIEW; // retorna el nombre de la vista ubicada en templates
 	}
 	
 	//Segunda forma
 	@GetMapping("exampleMAV")
 	//localhost:8080/example/exampleMAV
 	public ModelAndView exampleMAV() {
-		return new ModelAndView("example");
+		return new ModelAndView(EXAMPLE_VIEW);
 	}
 
 }
