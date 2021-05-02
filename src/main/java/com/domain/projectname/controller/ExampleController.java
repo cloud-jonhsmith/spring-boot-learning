@@ -1,9 +1,9 @@
 package com.domain.projectname.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -15,7 +15,8 @@ public class ExampleController {
 	//Primera forma
 	@GetMapping("exampleString")
 	//localhost:8080/example/exampleString
-	public String exampleString() {
+	public String exampleString(Model model) {
+		model.addAttribute("name", "Jonh");
 		return EXAMPLE_VIEW; // retorna el nombre de la vista ubicada en templates
 	}
 	
@@ -23,7 +24,9 @@ public class ExampleController {
 	@GetMapping("exampleMAV")
 	//localhost:8080/example/exampleMAV
 	public ModelAndView exampleMAV() {
-		return new ModelAndView(EXAMPLE_VIEW);
+		ModelAndView mav = new ModelAndView(EXAMPLE_VIEW);
+		mav.addObject("name", "Smith");
+		return mav;
 	}
 
 }
