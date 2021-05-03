@@ -1,5 +1,7 @@
 package com.domain.projectname.controller;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +16,8 @@ import com.domain.projectname.model.Person;
 @Controller
 @RequestMapping("example3")
 public class Example3Controller {
+	
+	private static final Log LOGGER = LogFactory.getLog(Example3Controller.class);
 	
 	public static final String FORM_VIEW = "form";
 	public static final String RESULT_VIEW = "result";
@@ -40,10 +44,15 @@ public class Example3Controller {
 	}*/
 	//******************FIN REDIRECCIONAMIENTO**********************
 	
+	//Agregando y visualizando los LOGS
 	@GetMapping("showform")
 	public String showForm(Model model) {
+		/*
+		LOGGER.info("INFO TRACE");
+		LOGGER.warn("WARNING TRACE");
+		LOGGER.error("ERROR TRACE");
+		LOGGER.debug("DEBUG TRACE");*/
 		model.addAttribute("person", new Person());
-		int i = 6/0;
 		return FORM_VIEW;
 		
 	}
@@ -55,8 +64,10 @@ public class Example3Controller {
 	//un objecto llamado "person" con atributos rellenos "name" y "age", y ese objeto se captura
 	//con "@ModelAttribute", se agrega el tipo y el nombre (puede ser cualquier nombre)
 	public ModelAndView addPerson(@ModelAttribute("person") Person personaaa) {
+		LOGGER.info("METHOD: 'addPerson' -- PARAMS: '" + personaaa + "'");
 		ModelAndView mav = new ModelAndView(RESULT_VIEW);
 		mav.addObject("person", personaaa);
+		LOGGER.info("TEMPLATE: '" + RESULT_VIEW + "' -- DATA: '" + personaaa + "'");
 		return mav;
 	}
 
