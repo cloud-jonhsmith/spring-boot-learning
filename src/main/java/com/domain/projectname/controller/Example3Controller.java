@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.domain.projectname.model.Person;
 
@@ -16,6 +17,28 @@ public class Example3Controller {
 	
 	public static final String FORM_VIEW = "form";
 	public static final String RESULT_VIEW = "result";
+	
+	//******************REDIRECCIONAMIENTO***************************
+	//Redireccionando PRIMERA FORMA
+	@GetMapping("/")
+	public String redirect() {
+		return "redirect:/example3/showform";
+	}
+	@GetMapping("")
+	public String redirectVacio() {
+		return "redirect:/example3/showform";
+	}
+	
+	//Redireccionando SEGUNDA FORMA (Usando RedirectView)
+	/*@GetMapping("/")
+	public RedirectView redirect() {
+		return new RedirectView("/example3/showform");
+	}
+	@GetMapping("")
+	public RedirectView redirectVacio() {
+		return new RedirectView("/example3/showform");
+	}*/
+	//******************FIN REDIRECCIONAMIENTO**********************
 	
 	@GetMapping("showform")
 	public String showForm(Model model) {
