@@ -11,3 +11,7 @@ spring:
     prefix: classpath:/templates/
     suffix: .html
     #view-names: ''
+server:
+  error:
+    whitelabel:
+      enabled: true #esta propiedad muestra por defecto la vista de spring
