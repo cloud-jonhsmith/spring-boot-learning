@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.domain.projectname.controller.Example3Controller;
 
+//Esto crea un bean que Spring lo guarda en su memoria
 @Component("exampleComponent")
 public class ExampleComponent {
 	
