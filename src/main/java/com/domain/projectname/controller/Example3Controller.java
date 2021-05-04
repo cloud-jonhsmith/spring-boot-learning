@@ -1,9 +1,12 @@
 package com.domain.projectname.controller;
 
+import javax.validation.Valid;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -63,11 +66,17 @@ public class Example3Controller {
 	//Para capturar los datos enviados desde el formulario "form.html", ese formulario nos envía
 	//un objecto llamado "person" con atributos rellenos "name" y "age", y ese objeto se captura
 	//con "@ModelAttribute", se agrega el tipo y el nombre (puede ser cualquier nombre)
-	public ModelAndView addPerson(@ModelAttribute("person") Person personaaa) {
-		LOGGER.info("METHOD: 'addPerson' -- PARAMS: '" + personaaa + "'");
-		ModelAndView mav = new ModelAndView(RESULT_VIEW);
-		mav.addObject("person", personaaa);
-		LOGGER.info("TEMPLATE: '" + RESULT_VIEW + "' -- DATA: '" + personaaa + "'");
+	public ModelAndView addPerson(@Valid @ModelAttribute("person") Person person, BindingResult bindingResult) {
+		//al agregar "@Valid" (validación), Spring necesita agregar el "BindingResult" para
+		//comprobar si es válido o no, en caso de no ser válido algún campo de este objeto,
+		//lo mete en el campo fields y lo va a retornar junto con la vista
+		ModelAndView mav = new ModelAndView();
+		if(bindingResult.hasErrors()) {
+			mav.setViewName(FORM_VIEW);
+		} else {
+			mav.setViewName(RESULT_VIEW);
+			mav.addObject("person", person);
+		}
 		return mav;
 	}
 
